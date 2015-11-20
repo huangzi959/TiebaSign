@@ -1,0 +1,12 @@
+name: signtb
+version: 2
+accesskey: lxxlnj0451
+handle:
+- rewrite: if(! is_file() && path ~ "^(.*)$") goto "/index.php/$1"
+cron:
+- description: clean
+  url: /index.php/Home/Queue/ClearSignStatus
+  schedule: 0 0 * * *
+- description: sign
+  url: /index.php/Home/Queue/CronInterface
+  schedule: */30 * * * *

@@ -1,0 +1,115 @@
+<extend name="Base/common"/>
+<block name="body">
+<script type="text/javascript">
+	$("#topbar-setting").addClass("am-active");
+</script>
+<title>设置 - {:C('SITE_TITLE')}</title>
+<script src="/Public/js/index.js"></script>
+<script src="/Public/js/admin.js"></script>
+
+<div class="am-g">
+	<div class="am-u-md-9">
+
+
+  <!-- content start -->
+  <div class="admin-content">
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="find-add-prompt">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">增加条目</div>
+    <div class="am-modal-bd am-form-set am-form">
+    <textarea rows="5" id="cookie-input" placeholder="请填写百度Cookie中BDUSS字段的内容"></textarea>
+    <div class="am-alert am-alert-primary" data-am-alert>
+    例如：BDUSS=ABCDEFG123567; 那么请填写ABCDEFG123567
+    </div>
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+    </div>
+  </div>
+</div>
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="cookievalue-model">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">Cookie 内容</div>
+    <div class="am-modal-bd">
+      <fieldset disabled>
+      <textarea type="text" rows="8" class="am-modal-prompt-input" id="cookievalue"></textarea>
+      </fieldset>
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>朕知道了</span>
+    </div>
+  </div>
+</div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+          <table class="am-table">
+            <thead>
+              <tr>
+                <th class="table-id">账户名</th>
+                <th class="table-title">Cookie</th>
+                <th class="table-set">操作</th>
+              </tr>
+          </thead>
+          <tbody>
+
+          <volist name="cookieList" id="vo">
+            <tr id="cookie-list-tr-{:$vo['id']}">
+
+              <td id="find-list-{:$vo['id']}">{:$vo['name']}<if condition="$vo['overdue'] eq 1"><ins>(Cookie失效)</ins></if></td>
+
+              <td>
+              <button class="am-btn am-btn-default am-btn-xs" onClick="OpenCookieValue({:$vo['id']})" id="cookie-list-val-{:$vo['id']}" value="{:$vo['cookies']}">查看</button>
+              </td>
+              <!--<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>-->
+              <td>
+                <div class="am-btn-toolbar">
+                  <div class="am-btn-group am-btn-group-xs">
+                  	<button class="am-btn am-btn-default am-btn-xs" onclick="ReloadBtnClick({:$vo['id']})"></span>重载贴吧</button>
+	                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onClick="DeleteFindBtnClick({:$vo['id']})"><span class="am-icon-trash-o"></span> 删除</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </volist>
+
+          </tbody>
+        </table>
+          <div class="am-cf">共 {$cookieCount} 条记录</div>
+          <hr />
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+	<div class="am-u-md-3">
+		<button type="button" class="am-btn am-btn-default" id="btn-add-find"><span class="am-icon-plus"></span> 新增百度账户</button>
+<hr />
+      <div class="am-panel am-panel-default">
+  <div class="am-panel-hd">赞助璨</div>
+  <div class="am-panel-bd">
+<form accept-charset="GBK" action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank"><input name="optEmail" type="hidden" value="smilexcc@gmail.com"/><input name="payAmount" type="hidden" value="10"/><input id="title" name="title" type="hidden" value="赞助璨-C云签"/><input name="memo" type="hidden" value="大爷赏你一杯咖啡.."/><input name="pay" src="https://img.alipay.com/sys/personalprod/style/mc/btn-index.png" type="image" value="转账"/></form>
+  </div>
+</div>
+      <div class="am-alert am-alert-success" data-am-alert><a href="http://cuican.name/?p=423" target="_blank">点此查看Cookie填写说明</a></div>
+      <div class="am-alert am-alert-secondary" data-am-alert>
+        请把<code>cyunqiandao@sina.com</code>加入注册邮箱的<b>白名单</b><br/><b>当你的百度账户失效</b>的时候该邮箱会第一时间向你所填的邮箱发送通知邮件，如果<b>收不到可能导致断签</b>
+      </div>
+      <div class="am-alert am-alert-primary" data-am-alert>
+        注意<br /><hr>
+        1. 添加且提示成功后如果没有出现请稍等片刻，请勿重复添加。<br/>
+        2. 如果添加后立即显示Cookie失效，在确保Cookie正确的情况下请多试一次
+      </div>
+
+
+
+	</div>
+	</div>
+
+</div>
+
+</block>

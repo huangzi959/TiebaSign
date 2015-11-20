@@ -1,0 +1,63 @@
+<extend name="Base/common"/>
+<block name="body">
+<script type="text/javascript">
+	$("#topbar-index").addClass("am-active");
+</script>
+<title>首页 - {:C('SITE_TITLE')}</title>
+<script src="/Public/js/index.js"></script>
+
+<div class="am-g">
+	<div class="am-u-md-9">
+
+		<table class="am-table">
+		    <thead>
+		        <tr>
+		        	<th>账户名</th>
+		            <th>贴吧名</th>
+		            <th>签到时间</th>
+		            <th>签到情况</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    <volist name="SignList" id="vo"> 
+		        <tr>
+		        	<th><empty name="vo['cookiename']"><i class="am-icon-spinner am-icon-spin"></i> 队列加载中</empty><noempty name="vo['cookiename']">{:$vo['cookiename']}</noempty></th>
+		            <td>{:$vo['tiebaname']}</td>
+		            <td>{:$vo['time']}</td>
+		            <td><if condition="$vo['issign'] eq 0"><i class="am-icon-close"></i> 未签到<elseif condition="$vo['issign'] eq 2"/><i class="am-icon-circle-o"></i> 待签到<else/><i class="am-icon-check"></i> 已签到</if></td>
+		        </tr>
+		    </volist>
+		    </tbody>
+		</table>
+
+	</div>
+	<div class="am-u-md-3">
+	<p>共 {:count($SignList)} 条数据</p>
+	<hr />
+      <div class="am-panel am-panel-default">
+  <div class="am-panel-hd">赞助璨</div>
+  <div class="am-panel-bd">
+<form accept-charset="GBK" action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank"><input name="optEmail" type="hidden" value="smilexcc@gmail.com"/><input name="payAmount" type="hidden" value="10"/><input id="title" name="title" type="hidden" value="赞助璨-C云签"/><input name="memo" type="hidden" value="大爷赏你一杯咖啡.."/><input name="pay" src="https://img.alipay.com/sys/personalprod/style/mc/btn-index.png" type="image" value="转账"/></form>
+  </div>
+</div>
+		<if condition="$overdueCount neq 0">
+			<div class="am-alert am-alert-danger" data-am-alert>
+			  你有 {:$overdueCount} 个Cookie过期<br/>快去设置里看看吧
+			</div>
+		</if>
+		<div class="am-panel am-panel-default">
+		  <div class="am-panel-hd">筛选查看</div>
+		  <div class="am-panel-bd">
+			<ul class="am-nav">
+			  <li><a href="/">全部</a></li>
+			  <li><a href="{:U('Home/Index/index').'?cookieid=-1'}">只看未签到</a></li>
+			  <volist name="cookieList" id="vo">
+			  <li><a href="{:U('Home/Index/index').'?cookieid='.$vo['id']}"><if condition="$vo['overdue'] eq 1"><ins>失效Cookie</ins></if>{:$vo['name']}</a></li>
+			  </volist>
+			</ul>
+		  </div>
+		</div>
+	</div>
+</div>
+
+</block>

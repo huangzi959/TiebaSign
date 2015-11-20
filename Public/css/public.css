@@ -1,0 +1,35 @@
+.qa-footer-grey{
+	background: #eee;
+}
+body,html {
+ margin: 0;
+ padding: 0;
+ height:100%;
+}
+#space_height {
+ position: relative;
+ min-height:100%;
+ padding-bottom: 120px;  /* 不至被footer盖住 */
+}
+footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+}
+.qustion-title-content{
+	LINE-HEIGHT:0px;
+}
+.info-tab{
+	height:350px;
+}
+.info{
+	min-width: 380px;
+	padding: 0px;
+}
+.info-nodisplay-badge{
+	display: none;
+}
+
+.am-tabs-noborder{
+	border:0px;
+}
